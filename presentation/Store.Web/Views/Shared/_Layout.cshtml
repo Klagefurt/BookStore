@@ -20,6 +20,22 @@
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
+            <span class="navbar-text ms-auto me-4">
+                @{
+                    Cart cart;
+                    if (!Context.Session.TryGetCart(out cart))
+                        cart = new Cart();
+
+                    if (cart.Items.Count == 0)
+                    {
+                        @:Cart is empty
+                    }
+                    else
+                    {
+                        @:There are @cart.Items.Values.Sum() which cost @cart.Amount
+                    }
+                }
+            </span>
         </nav>   
     </header>
     <div class="container">
